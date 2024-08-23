@@ -1,0 +1,40 @@
+.hidden-row {
+    display: none;
+}
+
+.expandable {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+    .expandable:hover {
+        text-decoration: underline;
+    }
+
+.toggle-symbol {
+    display: inline;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Color styles for different hierarchy levels */
+.level-1 {
+    background-color: #b3c6d4 ; /* Light blue for the first level */
+}
+
+.level-2 {
+    background-color: #c2d4e6 ; /* Slightly darker blue for the second level */
+}
+
+.level-3 {
+    background-color: #d9e6f2 ; /* Even darker blue for the third level */
+}
+
+.level-4 {
+    background-color: #e6f2ff; /* Darker blue for the fourth level */
+}
+
+.level-5 {
+    background-color: white; /* Dark blue for the fifth level */
+}

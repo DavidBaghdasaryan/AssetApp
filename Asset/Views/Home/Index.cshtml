@@ -1,0 +1,122 @@
+﻿@model IEnumerable<DAL.Model.BDProject>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hierarchical Table</title>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <!-- Include hierarchical-table.css if using separate file -->
+    <!-- <link rel="stylesheet" type="text/css" href="~/css/hierarchical-table.css" /> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Count</th>
+                <th>Image</th>
+                <th>Introduction Date</th>
+                <th>MDC</th>
+                <th>Task Unit Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+                <tr class="level-1">
+                    <td>
+                        <span class="toggle-symbol" data-target=".building-group-@project.ProjectId">+</span>
+                        @project.Name
+                    </td>
+                    <td>@project.Code</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                @foreach (var buildingGroup in project.BuildingGroups)
+                {
+                    <tr class="hidden-row building-group-@project.ProjectId level-2">
+                        <td style="padding-left:20px;">
+                            <span class="toggle-symbol" data-target=".building-@buildingGroup.BuildingGroupId">+</span>
+                            @buildingGroup.Name
+                        </td>
+                        <td>@buildingGroup.Code</td>
+                        <td>@buildingGroup.ConstructionDate</td>
+                        <td>@buildingGroup.Address</td>
+                        <td>@buildingGroup.Description</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    @foreach (var building in buildingGroup.Buildings)
+                    {
+                        <tr class="hidden-row building-@buildingGroup.BuildingGroupId level-3">
+                            <td style="padding-left:40px;">
+                                <span class="toggle-symbol" data-target=".room-@building.BuildingId">+</span>
+                                @building.Name
+                            </td>
+                            <td>@building.Code</td>
+                            <td>@building.ConstructionDate</td>
+                            <td>@building.Address</td>
+                            <td>@building.Description</td>
+                            <td>@building.FloorArea</td>
+                            <td></td>
+                        </tr>
+
+                        @foreach (var room in building.Rooms)
+                        {
+                            <tr class="hidden-row room-@building.BuildingId level-4">
+                                <td style="padding-left:60px;">
+                                    <span class="toggle-symbol" data-target=".element-@room.RoomId">+</span>
+                                    @room.Name
+                                </td>
+                                <td>@room.Code</td>
+                                <td>@room.Description</td>
+                                <td>@room.RoomNumber</td>
+                                <td>@room.FloorArea</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            @foreach (var element in room.Elements)
+                            {
+                                <tr class="hidden-row element-@room.RoomId level-5">
+                                    <td style="padding-left:80px;">@element.Name</td>
+                                    <td>@element.Code</td>
+                                    <td>@element.Count</td>
+                                    <td>@element.Unit</td>
+                                    <td>@element.IntroductionDate.ToShortDateString()</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function () {
+            $(".toggle-symbol").click(function () {
+                var target = $(this).data("target");
+                var isExpanded = $(target).first().is(":visible");
+
+                if (isExpanded) {
+                    $(target).hide();
+                    $(this).text("+");
+                } else {
+                    $(target).show();
+                    $(this).text("-");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
