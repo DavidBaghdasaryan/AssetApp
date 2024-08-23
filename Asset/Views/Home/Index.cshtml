@@ -1,138 +1,191 @@
 ﻿@model IEnumerable<DAL.Model.BDProject>
 
-
 <form method="post">
-<div class="row p-3 pb-3 mx-2">
-    <div class="col-6">
+    <div class="row p-3 pb-3 mx-2">
+        <div class="col-6"></div>
+        <div class="col-6 text-end">
+            <a asp-controller="Project" asp-action="BaseProject" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Project
+            </a>
+        </div>
     </div>
-    <div class="col-6 text-end">
-        <a asp-controller="Project" asp-action="UpSert" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i>  Create New Project
-        </a>
-    </div>
-</div>
-<head>
-    <title>Hierarchical Table</title>
-    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-       
-<body>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Code</th>
-                <th>Count</th>
-                <th>Image</th>
-                <th>Introduction Date</th>
-                <th>MDC</th>
-                <th>Task Unit Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var project in Model)
-            {
-                <tr class="level-1">
-                    <td>
-                        <span class="toggle-symbol" data-target=".building-group-@project.ProjectId">+</span>
-                        @project.Name
-                    </td>
-                    <td>@project.Code</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+    <head>
+        <title>Hierarchical Table</title>
+        <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+
+    <body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Count</th>
+                    <th>Image</th>
+                    <th>Introduction Date</th>
+                    <th>MDC</th>
+                    <th>Task Unit Price</th>
                 </tr>
-
-                @foreach (var buildingGroup in project.BuildingGroups)
+            </thead>
+            <tbody>
+                @foreach (var project in Model)
                 {
-                    <tr class="hidden-row building-group-@project.ProjectId level-2">
-                        <td style="padding-left:20px;">
-                            <span class="toggle-symbol" data-target=".building-@buildingGroup.BuildingGroupId">+</span>
-                            <i class="fa-solid fa-city"></i>
-                            @buildingGroup.Name
+                    <tr class="level-1" data-id="@project.ProjectId" data-type="project">
+                        <td>
+                            <span class="toggle-symbol" data-target=".building-group-@project.ProjectId">+</span>
+                            @project.Name
                         </td>
-                        <td>@buildingGroup.Code</td>
-                        <td>@buildingGroup.ConstructionDate</td>
-                        <td>@buildingGroup.Address</td>
-                        <td>@buildingGroup.Description</td>
+                        <td>@project.Code</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>
 
-                    @foreach (var building in buildingGroup.Buildings)
+                    @foreach (var buildingGroup in project.BuildingGroups)
                     {
-                        <tr class="hidden-row building-@buildingGroup.BuildingGroupId level-3">
-                            <td style="padding-left:40px;">
-                                <span class="toggle-symbol" data-target=".room-@building.BuildingId">+</span>
-                                <i class="fa-solid fa-building"></i>
-                                @building.Name
+                        <tr class="hidden-row building-group-@project.ProjectId level-2" data-id="@buildingGroup.BuildingGroupId" data-type="buildingGroup">
+                            <td style="padding-left:20px;">
+                                <span class="toggle-symbol" data-target=".building-@buildingGroup.BuildingGroupId">+</span>
+                                <i class="fa-solid fa-city"></i>
+                                @buildingGroup.Name
                             </td>
-                            <td>@building.Code</td>
-                            <td>@building.ConstructionDate</td>
-                            <td>@building.Address</td>
-                            <td>@building.Description</td>
-                            <td>@building.FloorArea</td>
+                            <td>@buildingGroup.Code</td>
+                            <td>@buildingGroup.ConstructionDate</td>
+                            <td>@buildingGroup.Address</td>
+                            <td>@buildingGroup.Description</td>
+                            <td></td>
                             <td></td>
                         </tr>
 
-                        @foreach (var room in building.Rooms)
+                        @foreach (var building in buildingGroup.Buildings)
                         {
-                            <tr class="hidden-row room-@building.BuildingId level-4">
-                                <td style="padding-left:60px;">
-                                    <span class="toggle-symbol" data-target=".element-@room.RoomId">+</span>
-                                    <i class="fa-solid fa-house"></i>
-                                    @room.Name
+                            <tr class="hidden-row building-@buildingGroup.BuildingGroupId level-3" data-id="@building.BuildingId" data-type="building">
+                                <td style="padding-left:40px;">
+                                    <span class="toggle-symbol" data-target=".room-@building.BuildingId">+</span>
+                                    <i class="fa-solid fa-building"></i>
+                                    @building.Name
                                 </td>
-                                <td>@room.Code</td>
-                                <td>@room.Description</td>
-                                <td>@room.RoomNumber</td>
-                                <td>@room.FloorArea</td>
-                                <td></td>
+                                <td>@building.Code</td>
+                                <td>@building.ConstructionDate</td>
+                                <td>@building.Address</td>
+                                <td>@building.Description</td>
+                                <td>@building.FloorArea</td>
                                 <td></td>
                             </tr>
 
-                            @foreach (var element in room.Elements)
+                            @foreach (var room in building.Rooms)
                             {
-                                <tr class="hidden-row element-@room.RoomId level-5">
-                                    <td style="padding-left:80px;">
-                                        <i class="fa-solid fa-address-card"></i>
-                                        @element.Name
+                                <tr class="hidden-row room-@building.BuildingId level-4" data-id="@room.RoomId" data-type="room">
+                                    <td style="padding-left:60px;">
+                                        <span class="toggle-symbol" data-target=".element-@room.RoomId">+</span>
+                                        <i class="fa-solid fa-house"></i>
+                                        @room.Name
                                     </td>
-                                    <td>@element.Code</td>
-                                    <td>@element.Count</td>
-                                    <td>@element.Unit</td>
-                                    <td>@element.IntroductionDate.ToShortDateString()</td>
+                                    <td>@room.Code</td>
+                                    <td>@room.Description</td>
+                                    <td>@room.RoomNumber</td>
+                                    <td>@room.FloorArea</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
+
+                                @foreach (var element in room.Elements)
+                                {
+                                    <tr class="hidden-row element-@room.RoomId level-5" data-id="@element.ElementId" data-type="element">
+                                        <td style="padding-left:80px;">
+                                            <i class="fa-solid fa-address-card"></i>
+                                            @element.Name
+                                        </td>
+                                        <td>@element.Code</td>
+                                        <td>@element.Count</td>
+                                        <td>@element.Unit</td>
+                                        <td>@element.IntroductionDate.ToShortDateString()</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                }
                             }
                         }
                     }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <script>
-        $(document).ready(function () {
-            $(".toggle-symbol").click(function () {
-                var target = $(this).data("target");
-                var isExpanded = $(target).first().is(":visible");
+        <!-- Context Menu -->
+        <div class="context-menu" id="context-menu">
+            <ul>
+                <li id="update-item">Update</li>
+                <li id="delete-item">Delete</li>
+            </ul>
+        </div>
 
-                if (isExpanded) {
-                    $(target).hide();
-                    $(this).text("+");
-                } else {
-                    $(target).show();
-                    $(this).text("-");
-                }
+        <script>
+            $(document).ready(function () {
+                var selectedRowData = null;
+
+                // Expand/Collapse rows
+                $(".toggle-symbol").click(function () {
+                    var target = $(this).data("target");
+                    var isExpanded = $(target).first().is(":visible");
+
+                    if (isExpanded) {
+                        $(target).hide();
+                        $(this).text("+");
+                    } else {
+                        $(target).show();
+                        $(this).text("-");
+                    }
+                });
+
+                // Show the context menu on right-click
+                $(".table tbody tr").contextmenu(function (event) {
+                    event.preventDefault();
+
+                    selectedRowData = $(this).data(); // Store the row data for later use
+
+                    $("#context-menu").css({
+                        top: event.pageY + "px",
+                        left: event.pageX + "px"
+                    }).show();
+                });
+
+                // Hide the context menu when clicking elsewhere
+                $(document).click(function () {
+                    $("#context-menu").hide();
+                });
+
+                // Handle update action
+                $("#update-item").click(function () {
+                    if (selectedRowData) {
+                        var updateUrl = "/Project/BaseProject"; // Define your update URL here
+                        window.location.href = updateUrl + "?id=" + selectedRowData.id + "&type=" + selectedRowData.type;
+                    }
+                    $("#context-menu").hide();
+                });
+
+                // Handle delete action
+                $("#delete-item").click(function () {
+                    if (selectedRowData) {
+                        var deleteUrl = "/YourDeleteAction"; // Define your delete URL here
+                        if (confirm("Are you sure you want to delete this item?")) {
+                            $.post(deleteUrl, { id: selectedRowData.id, type: selectedRowData.type }, function (result) {
+                                if (result.success) {
+                                    alert("Item deleted successfully.");
+                                    location.reload(); // Reload the page or remove the row from the DOM
+                                } else {
+                                    alert("Failed to delete the item.");
+                                }
+                            });
+                        }
+                    }
+                    $("#context-menu").hide();
+                });
             });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </form>

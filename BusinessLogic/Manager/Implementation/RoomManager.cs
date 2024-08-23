@@ -27,6 +27,11 @@ namespace BusinessLogic.Manager.Implementation
             _unitOfWork.Room.Remove(room);
         }
 
+        public Room GetItemById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Room room)
         {
             _unitOfWork.Room.Update(room);

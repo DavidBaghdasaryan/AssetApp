@@ -1,0 +1,86 @@
+﻿@model DAL.Model.Building
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@(Model.BuildingId != 0 ? "Update Building" : "Create Building") @Model.Name</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="@Model.BuildingId" hidden />
+            <input asp-for="@Model.BuildingGroupId" hidden />
+
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="@Model.Name" class="ms-2 text-muted"></label>
+                            <textarea asp-for="@Model.Name" class="form-control border-0 shadow"></textarea>
+                            <span asp-validation-for="@Model.Name" class="text-danger"> </span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="@Model.Code" class="ms-2 text-muted"></label>
+                            <textarea asp-for="@Model.Code" class="form-control border-0 shadow"></textarea>
+                            <span asp-validation-for="@Model.Code class=" text-danger"> </span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="@Model.ConstructionDate" class="ms-2 text-muted"></label>
+                            <textarea asp-for="@Model.ConstructionDate" class="form-control border-0 shadow"></textarea>
+                            <span asp-validation-for="@Model.ConstructionDate class=" text-danger"> </span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="@Model.Address" class="ms-2 text-muted"></label>
+                            <textarea asp-for="@Model.Address" class="form-control border-0 shadow"></textarea>
+                            <span asp-validation-for="@Model.Address class=" text-danger"> </span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="@Model.Description" class="ms-2 text-muted"></label>
+                            <textarea asp-for="@Model.Description" class="form-control border-0 shadow"></textarea>
+                            <span asp-validation-for="@Model.Description class=" text-danger"> </span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="@Model.FloorArea" class="ms-2 text-muted"></label>
+                            <textarea asp-for="@Model.FloorArea" class="form-control border-0 shadow"></textarea>
+                            <span asp-validation-for="@Model.FloorArea class=" text-danger"> </span>
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (@Model.BuildingId != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary border form-control">
+                                    Back to List
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Room" asp-action="Room" asp-route-prodId="@Model.BuildingId" class="btn btn-outline-primary border form-control">
+                                    Go to Building
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -31,6 +31,11 @@ namespace BusinessLogic.Manager.Implementation
             _unitOfWork.Save();
         }
 
+        public BuildingGroup GetItemById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(BuildingGroup buildingGroup)
         {
             _unitOfWork.BuildingGroup.Update(buildingGroup);

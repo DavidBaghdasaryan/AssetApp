@@ -31,5 +31,10 @@ namespace BusinessLogic.Manager.Implementation
             _unitOfWork.BaseProject.Remove(bDProject);
             _unitOfWork.Save();
         }
+
+        public BDProject GetItemById(int id)
+        {
+           return   _unitOfWork.BaseProject.Get(x=>x.ProjectId==id);
+        }
     }
 }

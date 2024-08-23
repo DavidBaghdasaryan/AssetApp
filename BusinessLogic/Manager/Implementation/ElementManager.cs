@@ -26,6 +26,11 @@ namespace BusinessLogic.Manager.Implementation
             _unitOfWork.Element.Remove(element);
         }
 
+        public Element GetItemById(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Element element)
         {
             _unitOfWork.Element.Update(element);

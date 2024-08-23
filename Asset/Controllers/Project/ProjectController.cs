@@ -4,8 +4,9 @@ using DAL.DBContex;
 using DAL.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Asset.Controllers
+namespace Asset.Controllers.Project
 {
+   
     public class ProjectController : Controller
     {
         private readonly IBaseProjectManager _baseProjectManager;
@@ -19,16 +20,25 @@ namespace Asset.Controllers
         {
             return View();
         }
-        public IActionResult UpSert()
+        public IActionResult BaseProject()
         {
-            BDProject project = new BDProject();    
+            BDProject project = new BDProject();
             return View(project);
         }
 
         [HttpPost]
-        public IActionResult UpSert(BDProject bDProject)
+        public IActionResult BaseProject(BDProject bDProject)
         {
-            _baseProjectManager.Create(bDProject);
+            if(bDProject.ProjectId>0)
+            _baseProjectManager.Update(bDProject);
+            else
+                _baseProjectManager.Create(bDProject);
+            return View(bDProject);
+        }
+        [HttpGet]
+        public  IActionResult BaseProject(int? id,BDProject bDProject)
+        {
+            bDProject= _baseProjectManager.GetItemById(id.Value);
             return View(bDProject);
         }
     }

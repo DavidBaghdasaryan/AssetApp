@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.Helpers;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Manager.Abstraction
 {
-    internal interface IElementManager: IModifyer
+    public interface IElementManager: IModifyer<Element>
     {
     }
 }
