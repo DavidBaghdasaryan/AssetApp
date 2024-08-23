@@ -22,6 +22,7 @@ namespace DAL.Repos.Implementation
         public void Add(T item)
         {
             _dbContext.Add(item);
+            Save();
         }
 
         public T Get(System.Linq.Expressions.Expression<Func<T, bool>> filter, string? includeProperties = null)
@@ -56,10 +57,12 @@ namespace DAL.Repos.Implementation
         public void Remove(T item)
         {
             dbSet.Remove(item);
+            Save();
         }
         public void Update(T item)
         {
             dbSet.Update(item);
+            Save();
         }
 
         public void Save()

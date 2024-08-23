@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Helpers
 {
-    public interface IModifyer
+    public interface IModifyer<T>
     {
-        public void Create();
-        public void Update();
-        public void Delete();
+        public void Create(T item);
+        public void Update(T item);
+        public void Delete(T item);
     }
 }

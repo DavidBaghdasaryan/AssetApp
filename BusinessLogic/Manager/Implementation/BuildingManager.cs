@@ -1,4 +1,6 @@
 ﻿using BusinessLogic.Manager.Abstraction;
+using DAL.Model;
+using DAL.Repos.UnitOfWork.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +11,25 @@ namespace BusinessLogic.Manager.Implementation
 {
     public class BuildingManager : IBuildingManager
     {
-        public void Create()
+        private readonly IUnitOfWork _unitOfWork;
+        public BuildingManager(IUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
         }
 
-        public void Delete()
+        public void Create(Building building)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Building.Add(building);
         }
 
-        public void Update()
+        public void Delete(Building building)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Building.Remove(building);
+        }
+
+        public void Update(Building building)
+        {
+            _unitOfWork.Building.Update(building);
         }
     }
 }

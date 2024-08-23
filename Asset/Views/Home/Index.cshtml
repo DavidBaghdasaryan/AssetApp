@@ -1,14 +1,24 @@
 ﻿@model IEnumerable<DAL.Model.BDProject>
 
-<!DOCTYPE html>
-<html>
+
+<form method="post">
+<div class="row p-3 pb-3 mx-2">
+    <div class="col-6">
+    </div>
+    <div class="col-6 text-end">
+        <a asp-controller="Project" asp-action="UpSert" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i>  Create New Project
+        </a>
+    </div>
+</div>
 <head>
     <title>Hierarchical Table</title>
     <link rel="stylesheet" type="text/css" href="~/css/site.css" />
-    <!-- Include hierarchical-table.css if using separate file -->
-    <!-- <link rel="stylesheet" type="text/css" href="~/css/hierarchical-table.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+       
 <body>
     <table class="table">
         <thead>
@@ -43,6 +53,7 @@
                     <tr class="hidden-row building-group-@project.ProjectId level-2">
                         <td style="padding-left:20px;">
                             <span class="toggle-symbol" data-target=".building-@buildingGroup.BuildingGroupId">+</span>
+                            <i class="fa-solid fa-city"></i>
                             @buildingGroup.Name
                         </td>
                         <td>@buildingGroup.Code</td>
@@ -58,6 +69,7 @@
                         <tr class="hidden-row building-@buildingGroup.BuildingGroupId level-3">
                             <td style="padding-left:40px;">
                                 <span class="toggle-symbol" data-target=".room-@building.BuildingId">+</span>
+                                <i class="fa-solid fa-building"></i>
                                 @building.Name
                             </td>
                             <td>@building.Code</td>
@@ -73,6 +85,7 @@
                             <tr class="hidden-row room-@building.BuildingId level-4">
                                 <td style="padding-left:60px;">
                                     <span class="toggle-symbol" data-target=".element-@room.RoomId">+</span>
+                                    <i class="fa-solid fa-house"></i>
                                     @room.Name
                                 </td>
                                 <td>@room.Code</td>
@@ -86,7 +99,10 @@
                             @foreach (var element in room.Elements)
                             {
                                 <tr class="hidden-row element-@room.RoomId level-5">
-                                    <td style="padding-left:80px;">@element.Name</td>
+                                    <td style="padding-left:80px;">
+                                        <i class="fa-solid fa-address-card"></i>
+                                        @element.Name
+                                    </td>
                                     <td>@element.Code</td>
                                     <td>@element.Count</td>
                                     <td>@element.Unit</td>
@@ -119,4 +135,4 @@
         });
     </script>
 </body>
-</html>
+</form>

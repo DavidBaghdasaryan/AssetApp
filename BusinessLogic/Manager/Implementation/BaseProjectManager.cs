@@ -16,17 +16,20 @@ namespace BusinessLogic.Manager.Implementation
         {
              _unitOfWork = unitOfWork;
         }
-        public void Create()
+        public void Create(BDProject bDProject)
         {
-          
+            _unitOfWork.BaseProject.Add(bDProject);
+            _unitOfWork.Save();
         }
-        public void Update()
+        public void Update(BDProject bDProject)
         {
-
+            _unitOfWork.BaseProject.Update(bDProject);
+            _unitOfWork.Save();
         }
-        public void Delete()
+        public void Delete(BDProject bDProject)
         {
-
+            _unitOfWork.BaseProject.Remove(bDProject);
+            _unitOfWork.Save();
         }
     }
 }

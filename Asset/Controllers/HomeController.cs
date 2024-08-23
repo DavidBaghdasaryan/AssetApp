@@ -38,7 +38,7 @@ namespace Asset.Controllers
         }
         public IActionResult Privacy()
         {
-            baseProjectManager.Create();
+           
             return View();
         }
 

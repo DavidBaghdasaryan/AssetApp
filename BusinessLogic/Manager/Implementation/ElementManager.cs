@@ -1,4 +1,6 @@
 ﻿using BusinessLogic.Manager.Abstraction;
+using DAL.Model;
+using DAL.Repos.UnitOfWork.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +11,24 @@ namespace BusinessLogic.Manager.Implementation
 {
     public class ElementManager : IElementManager
     {
-        public void Create()
+        private readonly IUnitOfWork _unitOfWork;
+        public ElementManager(IUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
+        }
+        public void Create(Element element)
+        {
+            _unitOfWork.Element.Add(element);
         }
 
-        public void Delete()
+        public void Delete(Element element)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Element.Remove(element);
         }
 
-        public void Update()
+        public void Update(Element element)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Element.Update(element);
         }
     }
 }
