@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Manager.Abstraction;
+﻿using BusinessLogic.Helpers;
+using BusinessLogic.Manager.Abstraction;
 using BusinessLogic.Manager.Implementation;
 using DAL.DBContex;
 using DAL.Model.Implementation;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Asset.Controllers.Project
 {
 
-    public class ProjectController : Controller
+    public class ProjectController : Controller, IUpdateControllers<BDProject>
     {
         private readonly IBaseProjectManager _baseProjectManager;
         private readonly AssetDBContex _context;
@@ -36,11 +37,19 @@ namespace Asset.Controllers.Project
             return View(bDProject);
         }
        
-        public  IActionResult UpdateProject(int? id,BDProject bDProject)
+        public  IActionResult Update(int? id,BDProject bDProject)
         {
             bDProject= _baseProjectManager.GetItemById(id.Value);
             bDProject.IsUpdated=true;   
             return View("BaseProject", bDProject);
+        }
+
+        [HttpPost]
+        public IActionResult Update( BDProject bDProject)
+        {
+            _baseProjectManager.Update(bDProject);
+            var list = _baseProjectManager.GetAll();
+            return View("/Views/Home/Index.cshtml", _baseProjectManager.GetAll());
         }
     }
 }

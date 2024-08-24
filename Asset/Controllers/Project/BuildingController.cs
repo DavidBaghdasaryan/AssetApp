@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Manager.Abstraction;
+﻿using BusinessLogic.Helpers;
+using BusinessLogic.Manager.Abstraction;
 using BusinessLogic.Manager.Implementation;
 using DAL.DBContex;
 using DAL.Model.Implementation;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Asset.Controllers.Project
 {
-    public class BuildingController : Controller
+    public class BuildingController : Controller, IUpdateControllers<Building>
     {
         private readonly IBuildingManager _buildingManager;
         private readonly AssetDBContex _context;
@@ -23,6 +24,11 @@ namespace Asset.Controllers.Project
         }
         [HttpPost]
         public IActionResult Building(Building  building)
+        {
+            _buildingManager.Create(building);
+            return View(building);
+        }
+        public IActionResult Update(int? id, Building building)
         {
             _buildingManager.Create(building);
             return View(building);

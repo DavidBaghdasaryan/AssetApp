@@ -34,7 +34,7 @@ namespace DAL.Model.Implementation
 
         public int RoomId { get; set; }
         [ForeignKey("RoomId")]
-        public Room Room { get; set; }
+        public Room? Room { get; set; }
         public bool IsUpdated { get; set; }
     }
 }

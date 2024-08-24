@@ -37,7 +37,7 @@ namespace DAL.Model.Implementation
         [ForeignKey("BuildingGroupId")]
         public BuildingGroup BuildingGroup { get; set; }
 
-        public ICollection<Room> Rooms { get; set; }
+        public ICollection<Room> Rooms { get; set; } = new List<Room>();
         public bool IsUpdated { get; set; }
     }
 }

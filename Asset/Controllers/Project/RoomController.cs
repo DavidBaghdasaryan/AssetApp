@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Manager.Abstraction;
+﻿using BusinessLogic.Helpers;
+using BusinessLogic.Manager.Abstraction;
 using BusinessLogic.Manager.Implementation;
 using DAL.DBContex;
 using DAL.Model.Implementation;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Asset.Controllers.Project
 {
-    public class RoomController : Controller
+    public class RoomController : Controller, IUpdateControllers<Room>
     {
         private readonly IRoomManager _roomManager;
         private readonly AssetDBContex _context;
@@ -26,6 +27,11 @@ namespace Asset.Controllers.Project
         {
             _roomManager.Create(room);
             return View(room);
+        }
+
+        public IActionResult Update(int? id, Room item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

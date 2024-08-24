@@ -10,6 +10,6 @@ namespace BusinessLogic.Manager.Abstraction
 {
     public interface IBaseProjectManager: IModifyer<BDProject>
     {
-       
+        List<BDProject> GetAll();
     }
 }

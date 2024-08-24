@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Manager.Abstraction;
+﻿using BusinessLogic.Helpers;
+using BusinessLogic.Manager.Abstraction;
 using BusinessLogic.Manager.Implementation;
 using DAL.DBContex;
 using DAL.Model.Implementation;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Asset.Controllers.Project
 {
-    public class BuildingGroupController : Controller
+    public class BuildingGroupController : Controller, IUpdateControllers<BuildingGroup>
     {
         private readonly IBuildingGroupManager _buildingGroupManager;
         private readonly AssetDBContex _context;
@@ -26,6 +27,11 @@ namespace Asset.Controllers.Project
         {
             _buildingGroupManager.Create(bDProject);
             return View(bDProject);
+        }
+
+        public IActionResult Update(int? id, BuildingGroup item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

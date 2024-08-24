@@ -35,7 +35,7 @@ namespace DAL.Model.Implementation
         [ForeignKey("ProjectId")]
         public BDProject Project { get; set; }
 
-        public ICollection<Building> Buildings { get; set; }
+        public ICollection<Building> Buildings { get; set; } = new List<Building>();
         public bool IsUpdated { get; set; }
     }
 }

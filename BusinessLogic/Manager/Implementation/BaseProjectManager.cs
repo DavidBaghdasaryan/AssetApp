@@ -36,5 +36,9 @@ namespace BusinessLogic.Manager.Implementation
         {
            return   _unitOfWork.BaseProject.Get(x=>x.ProjectId==id);
         }
+        public List<BDProject> GetAll()
+        {
+            return _unitOfWork.BaseProject.GetList().ToList();
+        }
     }
 }

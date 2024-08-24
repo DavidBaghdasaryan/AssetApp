@@ -21,7 +21,7 @@ namespace DAL.Model.Implementation
         [MaxLength(50)]
         public string Code { get; set; }
 
-        public ICollection<BuildingGroup> BuildingGroups { get; set; }
+        public ICollection<BuildingGroup> BuildingGroups { get; set; }  = new List<BuildingGroup>();
         public bool IsUpdated { get; set; }
     }
 }

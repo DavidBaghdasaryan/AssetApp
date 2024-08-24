@@ -1,14 +1,15 @@
 ﻿using DAL.Model.Implementation;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repos.Abstraction
+namespace BusinessLogic.Helpers
 {
-    public interface IBaseProjectRepo : IBaseRepo<BDProject>
+    public interface IUpdateControllers<T>
     {
-        List<BDProject> GetList();
+        IActionResult Update(int? id, T item);
     }
 }

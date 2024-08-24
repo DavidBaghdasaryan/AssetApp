@@ -35,7 +35,7 @@ namespace DAL.Model.Implementation
         [ForeignKey("BuildingId")]
         public Building Building { get; set; }
 
-        public ICollection<Element> Elements { get; set; }
+        public ICollection<Element> Elements { get; set; } = new List<Element>();
         public bool IsUpdated { get; set; }=false;
     }
 }

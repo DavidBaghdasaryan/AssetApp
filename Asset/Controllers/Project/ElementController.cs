@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Manager.Abstraction;
+﻿using BusinessLogic.Helpers;
+using BusinessLogic.Manager.Abstraction;
 using BusinessLogic.Manager.Implementation;
 using DAL.DBContex;
 using DAL.Model.Implementation;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Asset.Controllers.Project
 {
-    public class ElementController : Controller
+    public class ElementController : Controller, IUpdateControllers<Element>
     {
         private readonly IElementManager _elementManager;
         private readonly AssetDBContex _context;
@@ -27,6 +28,11 @@ namespace Asset.Controllers.Project
         {
             _elementManager.Create(element);
             return View(element);
+        }
+
+        public IActionResult Update(int? id, Element item)
+        {
+            throw new NotImplementedException();
         }
     }
 }
