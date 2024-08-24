@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BDProject>
+﻿@model IEnumerable<DAL.Model.Implementation.BDProject>
 
 <form method="post">
     <div class="row p-3 pb-3 mx-2">
@@ -142,6 +142,12 @@
                     }
                 });
 
+                // Highlight row on click
+                $(".table tbody tr").click(function () {
+                    $(".table tbody tr").removeClass("selected");
+                    $(this).addClass("selected");
+                });
+
                 // Show the context menu on right-click
                 $(".table tbody tr").contextmenu(function (event) {
                     event.preventDefault();
@@ -162,8 +168,31 @@
                 // Handle update action
                 $("#update-item").click(function () {
                     if (selectedRowData) {
-                        var updateUrl = "/Project/UpdateProject"; // Define your update URL here
-                        window.location.href = updateUrl + "?id=" + selectedRowData.id + "&type=" + selectedRowData.type;
+                        // Example: Update URL could be based on the type
+                        var updateUrl;
+                        switch (selectedRowData.type) {
+                            case 'project':
+                                updateUrl = "/Project/UpdateProject";
+                                break;
+                            case 'buildingGroup':
+                                updateUrl = "/BuildingGroup/UpdateBuildingGroup";
+                                break;
+                            case 'building':
+                                updateUrl = "/Building/UpdateBuilding";
+                                break;
+                            case 'room':
+                                updateUrl = "/Room/UpdateRoom";
+                                break;
+                            case 'element':
+                                updateUrl = "/Element/UpdateElement";
+                                break;
+                            default:
+                                alert("Unknown type");
+                                return;
+                        }
+
+                        // Redirect to the update page with id and type
+                        window.location.href = updateUrl + "?id=" + selectedRowData.id;
                     }
                     $("#context-menu").hide();
                 });
@@ -171,9 +200,31 @@
                 // Handle delete action
                 $("#delete-item").click(function () {
                     if (selectedRowData) {
-                        var deleteUrl = "/YourDeleteAction"; // Define your delete URL here
+                        var deleteUrl;
+                        switch (selectedRowData.type) {
+                            case 'project':
+                                deleteUrl = "/Project/DeleteProject";
+                                break;
+                            case 'buildingGroup':
+                                deleteUrl = "/BuildingGroup/DeleteBuildingGroup";
+                                break;
+                            case 'building':
+                                deleteUrl = "/Building/DeleteBuilding";
+                                break;
+                            case 'room':
+                                deleteUrl = "/Room/DeleteRoom";
+                                break;
+                            case 'element':
+                                deleteUrl = "/Element/DeleteElement";
+                                break;
+                            default:
+                                alert("Unknown type");
+                                return;
+                        }
+
+                        // Confirm deletion and send POST request
                         if (confirm("Are you sure you want to delete this item?")) {
-                            $.post(deleteUrl, { id: selectedRowData.id, type: selectedRowData.type }, function (result) {
+                            $.post(deleteUrl, { id: selectedRowData.id }, function (result) {
                                 if (result.success) {
                                     alert("Item deleted successfully.");
                                     location.reload(); // Reload the page or remove the row from the DOM

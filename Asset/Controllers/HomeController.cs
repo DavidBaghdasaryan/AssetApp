@@ -1,6 +1,7 @@
 using BusinessLogic.Manager.Abstraction;
 using DAL.DBContex;
 using DAL.Model;
+using DAL.Model.Implementation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;

@@ -36,6 +36,6 @@ namespace DAL.Model.Implementation
         public Building Building { get; set; }
 
         public ICollection<Element> Elements { get; set; }
-        public bool IsUpdated { get; set; }
+        public bool IsUpdated { get; set; }=false;
     }
 }

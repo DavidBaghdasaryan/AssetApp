@@ -36,7 +36,12 @@
 }
 
 .level-5 {
-    background-color: white; /* Dark blue for the fifth level */
+    background-color: white; /* White for the fifth level */
+}
+
+/* Highlight selected row */
+.selected {
+    background-color: #ffd700 !important; /* Gold color for selected row */
 }
 
 /* Context Menu Styles */
