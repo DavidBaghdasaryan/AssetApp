@@ -1,5 +1,5 @@
 ﻿using BusinessLogic.Manager.Abstraction;
-using DAL.Model;
+using DAL.Model.Implementation;
 using DAL.Repos.UnitOfWork.Abstraction;
 using System;
 using System.Collections.Generic;

@@ -5,10 +5,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Model.Abstraction;
 
-namespace DAL.Model
+namespace DAL.Model.Implementation
 {
-    public class Element 
+    public class Element: IBaseFiealds
     {
 
         [Key]
@@ -34,5 +35,6 @@ namespace DAL.Model
         public int RoomId { get; set; }
         [ForeignKey("RoomId")]
         public Room Room { get; set; }
+        public bool IsUpdated { get; set; }
     }
 }

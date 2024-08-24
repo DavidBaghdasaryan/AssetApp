@@ -1,7 +1,7 @@
 ﻿using BusinessLogic.Manager.Abstraction;
 using BusinessLogic.Manager.Implementation;
 using DAL.DBContex;
-using DAL.Model;
+using DAL.Model.Implementation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asset.Controllers.Project

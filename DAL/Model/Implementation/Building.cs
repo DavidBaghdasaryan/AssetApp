@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Model.Abstraction;
 
-namespace DAL.Model
+namespace DAL.Model.Implementation
 {
-    public class BuildingGroup 
+    public class Building: IBaseFiealds, IBuildingFiealds
     {
-
         [Key]
-        public int BuildingGroupId { get; set; }
+        public int BuildingId { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -30,10 +30,14 @@ namespace DAL.Model
 
         public string Description { get; set; }
 
-        public int ProjectId { get; set; }
-        [ForeignKey("ProjectId")]
-        public BDProject Project { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal FloorArea { get; set; }
 
-        public ICollection<Building> Buildings { get; set; }
+        public int BuildingGroupId { get; set; }
+        [ForeignKey("BuildingGroupId")]
+        public BuildingGroup BuildingGroup { get; set; }
+
+        public ICollection<Room> Rooms { get; set; }
+        public bool IsUpdated { get; set; }
     }
 }

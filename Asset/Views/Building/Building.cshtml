@@ -1,10 +1,10 @@
-﻿@model DAL.Model.Building
+﻿@model Building
 
 <div class="card shadow border-0 my-4">
     <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white py-2">@(Model.BuildingId != 0 ? "Update Building" : "Create Building") @Model.Name</h2>
+                <h2 class="text-white py-2">@(Model.IsUpdated != false ? "Update Building" : "Create Building") @Model.Name</h2>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
 
                         <div class="row pt-2">
                             <div class="col-6 col-md-3">
-                                @if (@Model.BuildingId != 0)
+                                @if (@Model.IsUpdated != false)
                                 {
                                     <button type="submit" class="btn btn-primary form-control">Update</button>
                                 }

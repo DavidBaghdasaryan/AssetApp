@@ -1,5 +1,5 @@
 ﻿using DAL.DBContex;
-using DAL.Model;
+using DAL.Model.Implementation;
 using DAL.Repos.Abstraction;
 using System;
 using System.Collections.Generic;

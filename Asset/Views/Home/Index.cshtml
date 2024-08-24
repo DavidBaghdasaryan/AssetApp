@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DAL.Model.BDProject>
+﻿@model IEnumerable<BDProject>
 
 <form method="post">
     <div class="row p-3 pb-3 mx-2">
@@ -162,7 +162,7 @@
                 // Handle update action
                 $("#update-item").click(function () {
                     if (selectedRowData) {
-                        var updateUrl = "/Project/BaseProject"; // Define your update URL here
+                        var updateUrl = "/Project/UpdateProject"; // Define your update URL here
                         window.location.href = updateUrl + "?id=" + selectedRowData.id + "&type=" + selectedRowData.type;
                     }
                     $("#context-menu").hide();

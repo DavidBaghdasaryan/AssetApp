@@ -5,10 +5,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Model.Abstraction;
 
-namespace DAL.Model
+namespace DAL.Model.Implementation
 {
-    public class Room 
+    public class Room: IBaseFiealds
     {
         [Key]
         public int RoomId { get; set; }
@@ -35,5 +36,6 @@ namespace DAL.Model
         public Building Building { get; set; }
 
         public ICollection<Element> Elements { get; set; }
+        public bool IsUpdated { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Model
+namespace DAL.Model.Implementation
 {
     public class ErrorViewModel
     {
