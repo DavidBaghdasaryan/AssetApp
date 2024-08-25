@@ -30,9 +30,19 @@ namespace Asset.Controllers.Project
             return View(element);
         }
 
-        public IActionResult Update(int? id, Element item)
+        [HttpGet]
+        public IActionResult Update(int id, Element element)
         {
-            throw new NotImplementedException();
+            element = _elementManager.GetItemById(id);
+            element.IsUpdated = true;
+            return View("Element", element);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Element element)
+        {
+            _elementManager.Update(element);
+            return View("Element", element);
         }
     }
 }

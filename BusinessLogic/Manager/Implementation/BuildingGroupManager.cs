@@ -33,7 +33,7 @@ namespace BusinessLogic.Manager.Implementation
 
         public BuildingGroup GetItemById(int id)
         {
-            throw new NotImplementedException();
+           return _unitOfWork.BuildingGroup.Get(x=>x.BuildingGroupId==id);
         }
 
         public void Update(BuildingGroup buildingGroup)

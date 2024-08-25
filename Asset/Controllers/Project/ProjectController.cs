@@ -36,10 +36,11 @@ namespace Asset.Controllers.Project
                 _baseProjectManager.Create(bDProject);
             return View(bDProject);
         }
-       
-        public  IActionResult Update(int? id,BDProject bDProject)
+        [HttpGet]
+        public  IActionResult Update(int id,BDProject bDProject)
         {
-            bDProject= _baseProjectManager.GetItemById(id.Value);
+
+            bDProject = _baseProjectManager.GetItemById(id);
             bDProject.IsUpdated=true;   
             return View("BaseProject", bDProject);
         }

@@ -29,9 +29,19 @@ namespace Asset.Controllers.Project
             return View(room);
         }
 
-        public IActionResult Update(int? id, Room item)
+        [HttpGet]
+        public IActionResult Update(int id, Room room)
         {
-            throw new NotImplementedException();
+            room = _roomManager.GetItemById(id);
+            room.IsUpdated = true;
+            return View("Room", room);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Room room)
+        {
+            _roomManager.Update(room);
+            return View("Room", room);
         }
     }
 }

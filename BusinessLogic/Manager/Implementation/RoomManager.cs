@@ -29,7 +29,7 @@ namespace BusinessLogic.Manager.Implementation
 
         public Room GetItemById(int id)
         {
-            throw new NotImplementedException();
+           return _unitOfWork.Room.Get(x=>x.RoomId==id);
         }
 
         public void Update(Room room)

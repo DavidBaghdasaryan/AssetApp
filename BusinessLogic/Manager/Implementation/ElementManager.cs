@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BusinessLogic.Manager.Implementation
 {
@@ -28,7 +29,7 @@ namespace BusinessLogic.Manager.Implementation
 
         public Element GetItemById(int Id)
         {
-            throw new NotImplementedException();
+           return _unitOfWork.Element.Get(x=>x.ElementId==Id);
         }
 
         public void Update(Element element)

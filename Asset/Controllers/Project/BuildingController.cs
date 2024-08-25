@@ -28,10 +28,19 @@ namespace Asset.Controllers.Project
             _buildingManager.Create(building);
             return View(building);
         }
-        public IActionResult Update(int? id, Building building)
+        [HttpGet]
+        public IActionResult Update(int id, Building building)
         {
-            _buildingManager.Create(building);
-            return View(building);
+            building = _buildingManager.GetItemById(id);
+            building.IsUpdated = true;
+            return View("BaseProject", building);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Building building)
+        {
+            _buildingManager.Update(building);
+            return View("Building", building);
         }
     }
 }

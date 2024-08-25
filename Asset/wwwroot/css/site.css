@@ -69,3 +69,19 @@
             .context-menu ul li:hover {
                 background-color: #f1f1f1;
             }
+
+/* Footer Styles */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Optional: Change the background color */
+    padding: 10px 0;
+    text-align: center; /* Center the text */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow */
+}
+
+/* Ensuring the content doesn't overlap with the footer */
+body {
+    padding-bottom: 60px; /* Adjust this value to match the footer height */
+}

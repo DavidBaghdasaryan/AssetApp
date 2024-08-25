@@ -23,15 +23,24 @@ namespace Asset.Controllers.Project
             return View(group);
         }
         [HttpPost]
-        public IActionResult BuildingGroup(BuildingGroup bDProject)
+        public IActionResult BuildingGroup(BuildingGroup  buildingGroup)
         {
-            _buildingGroupManager.Create(bDProject);
-            return View(bDProject);
+            _buildingGroupManager.Create(buildingGroup);
+            return View(buildingGroup);
+        }
+        [HttpGet]
+        public IActionResult Update(int id, BuildingGroup buildingGroup)
+        {
+            buildingGroup = _buildingGroupManager.GetItemById(id);
+            buildingGroup.IsUpdated = true;
+            return View("BuildingGroup", buildingGroup);
         }
 
-        public IActionResult Update(int? id, BuildingGroup item)
+        [HttpPost]
+        public IActionResult Update(BuildingGroup buildingGroup)
         {
-            throw new NotImplementedException();
+            _buildingGroupManager.Update(buildingGroup);
+            return View("buildingGroup", buildingGroup);
         }
     }
 }
