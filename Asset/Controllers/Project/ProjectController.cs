@@ -37,12 +37,16 @@ namespace Asset.Controllers.Project
             return View(bDProject);
         }
         [HttpGet]
-        public  IActionResult Update(int id,BDProject bDProject)
+        public  IActionResult Update(int id)
         {
-
-            bDProject = _baseProjectManager.GetItemById(id);
-            bDProject.IsUpdated=true;   
-            return View("BaseProject", bDProject);
+            if (ModelState.IsValid)
+            {
+                var bDProject = _baseProjectManager.GetItemById(id);
+                bDProject.IsUpdated = true;
+                return View("BaseProject", bDProject);
+            }
+            else
+            { return NotFound(); }
         }
 
         [HttpPost]

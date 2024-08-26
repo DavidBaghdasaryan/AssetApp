@@ -45,7 +45,8 @@
                                     Back to List
                                 </a>
                             </div> <div class="col-6 col-md-3">
-                                <a asp-controller="BuildingGroup" asp-action="BuildingGroup" asp-route-prodId="@Model.ProjectId" class="btn btn-outline-primary border form-control">
+                                <a asp-controller="BuildingGroup" asp-action="BuildingGroup" asp-route-prodId="@Model.ProjectId"
+                                   class="btn btn-outline-primary border form-control @(!Model.IsUpdated ? "" : "disabled")">
                                     Go to Building Groups
                                 </a>
                             </div>

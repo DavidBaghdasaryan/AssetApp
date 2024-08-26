@@ -30,9 +30,9 @@ namespace Asset.Controllers.Project
         }
 
         [HttpGet]
-        public IActionResult Update(int id, Room room)
+        public IActionResult Update(int id)
         {
-            room = _roomManager.GetItemById(id);
+           var room = _roomManager.GetItemById(id);
             room.IsUpdated = true;
             return View("Room", room);
         }

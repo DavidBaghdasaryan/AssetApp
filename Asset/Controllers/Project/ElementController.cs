@@ -31,9 +31,9 @@ namespace Asset.Controllers.Project
         }
 
         [HttpGet]
-        public IActionResult Update(int id, Element element)
+        public IActionResult Update(int id)
         {
-            element = _elementManager.GetItemById(id);
+            var element = _elementManager.GetItemById(id);
             element.IsUpdated = true;
             return View("Element", element);
         }

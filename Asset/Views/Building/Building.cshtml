@@ -65,7 +65,8 @@
                                 </a>
                             </div>
                             <div class="col-6 col-md-3">
-                                <a asp-controller="Room" asp-action="Room" asp-route-prodId="@Model.BuildingId" class="btn btn-outline-primary border form-control">
+                                <a asp-controller="Room" asp-action="Room" asp-route-prodId="@Model.BuildingId"
+                                   class="btn btn-outline-primary border form-control @(!Model.IsUpdated ? "" : "disabled")">
                                     Go to Building
                                 </a>
                             </div>

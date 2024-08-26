@@ -23,15 +23,15 @@ namespace Asset.Controllers.Project
             return View(group);
         }
         [HttpPost]
-        public IActionResult BuildingGroup(BuildingGroup  buildingGroup)
+        public IActionResult BuildingGroup(BuildingGroup buildingGroup)
         {
             _buildingGroupManager.Create(buildingGroup);
             return View(buildingGroup);
         }
         [HttpGet]
-        public IActionResult Update(int id, BuildingGroup buildingGroup)
+        public IActionResult Update(int id)
         {
-            buildingGroup = _buildingGroupManager.GetItemById(id);
+            var buildingGroup = _buildingGroupManager.GetItemById(id);
             buildingGroup.IsUpdated = true;
             return View("BuildingGroup", buildingGroup);
         }

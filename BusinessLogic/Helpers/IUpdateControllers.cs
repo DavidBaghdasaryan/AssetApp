@@ -10,6 +10,6 @@ namespace BusinessLogic.Helpers
 {
     public interface IUpdateControllers<T>
     {
-        IActionResult Update(int id, T item);
+        IActionResult Update(int id);
     }
 }
