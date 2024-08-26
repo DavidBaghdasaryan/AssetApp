@@ -11,5 +11,6 @@ namespace BusinessLogic.Helpers
     public interface IUpdateControllers<T>
     {
         IActionResult Update(int id);
+        IActionResult Delete(int id);
     }
 }

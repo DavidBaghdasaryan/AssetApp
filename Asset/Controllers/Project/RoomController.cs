@@ -16,6 +16,20 @@ namespace Asset.Controllers.Project
             _context = context;
             _roomManager = RoomManager;
         }
+
+        public IActionResult Delete(int id)
+        {
+            var room = _roomManager.GetItemById(id);
+            if (room != null) { 
+                _roomManager.Delete(room);
+                return Ok(new { success = true, message = "Room deleted successfully." });
+            }
+            else
+            {
+                return BadRequest(new { success = false, message = "Failed to delete the Room." });
+            }
+        }
+
         public IActionResult Room(int prodId)
         {
             Room room = new();

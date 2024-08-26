@@ -25,9 +25,24 @@ namespace Asset.Controllers.Project
         [HttpPost]
         public IActionResult Building(Building  building)
         {
+
             _buildingManager.Create(building);
             return View(building);
         }
+
+        public IActionResult Delete(int id)
+        {
+            var building = _buildingManager.GetItemById(id);
+            if (building != null) { 
+                _buildingManager.Delete(building);
+                return Ok(new { success = true, message = "Building deleted successfully." });
+            }
+            else
+            {
+                return BadRequest(new { success = false, message = "Failed to delete the Building." });
+            }
+        }
+
         [HttpGet]
         public IActionResult Update(int id)
         {

@@ -28,6 +28,20 @@ namespace Asset.Controllers.Project
             _buildingGroupManager.Create(buildingGroup);
             return View(buildingGroup);
         }
+
+        public IActionResult Delete(int id)
+        {
+            var buildingGroup = _buildingGroupManager.GetItemById(id);
+            if (buildingGroup != null) { 
+            _buildingGroupManager.Delete(buildingGroup);
+                return Ok(new { success = true, message = "Building Group deleted successfully." });
+            }
+            else
+            {
+                return BadRequest(new { success = false, message = "Failed to delete the Building Group." });
+            }
+        }
+
         [HttpGet]
         public IActionResult Update(int id)
         {

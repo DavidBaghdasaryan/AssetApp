@@ -16,6 +16,21 @@ namespace Asset.Controllers.Project
             _context = context;
             _elementManager = elementManager;
         }
+
+        public IActionResult Delete(int id)
+        {
+            var element = _elementManager.GetItemById(id);
+            if (element != null)
+            {
+                _elementManager.Delete(element);
+                return Ok(new { success = true, message = "Element  deleted successfully." });
+            }
+            else
+            {
+                return BadRequest(new { success = false, message = "Failed to delete the  Element." });
+            }
+        }
+
         public IActionResult Element(int prodId)
         {
             Element element = new();

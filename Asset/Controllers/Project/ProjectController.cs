@@ -30,14 +30,14 @@ namespace Asset.Controllers.Project
         [HttpPost]
         public IActionResult BaseProject(BDProject bDProject)
         {
-            if(bDProject.ProjectId>0)
-            _baseProjectManager.Update(bDProject);
+            if (bDProject.ProjectId > 0)
+                _baseProjectManager.Update(bDProject);
             else
                 _baseProjectManager.Create(bDProject);
             return View(bDProject);
         }
         [HttpGet]
-        public  IActionResult Update(int id)
+        public IActionResult Update(int id)
         {
             if (ModelState.IsValid)
             {
@@ -50,11 +50,26 @@ namespace Asset.Controllers.Project
         }
 
         [HttpPost]
-        public IActionResult Update( BDProject bDProject)
+        public IActionResult Update(BDProject bDProject)
         {
             _baseProjectManager.Update(bDProject);
             var list = _baseProjectManager.GetAll();
             return View("/Views/Home/Index.cshtml", _baseProjectManager.GetAll());
         }
+
+        public IActionResult Delete(int id)
+        {
+            var bDProject = _baseProjectManager.GetItemById(id);
+            if (bDProject != null)
+            {
+                _baseProjectManager.Delete(bDProject);
+                return Ok(new { success = true, message = "Project deleted successfully." });
+            }
+            else
+            {
+                return BadRequest(new { success = false, message = "Failed to delete the Project." });
+            }
+        }
+
     }
 }
