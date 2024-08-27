@@ -26,7 +26,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Code</th>
-                    <th>Construction  Date</th>
+                    <th>Construction Date</th>
                     <th>Address</th>
                     <th>Description</th>
                     <th>Room Number</th>
@@ -136,7 +136,7 @@
         <div class="context-menu" id="context-menu">
             <ul>
                 <li id="update-item">Update</li>
-                <li id="delete-item" >Delete</li>
+                <li id="delete-item">Delete</li>
             </ul>
         </div>
 
@@ -162,19 +162,38 @@
 
                 var selectedRowData = null;
 
-                // Expand/Collapse rows
+                // Expand/Collapse rows hierarchically
                 $(".toggle-symbol").click(function () {
                     var target = $(this).data("target");
                     var isExpanded = $(target).first().is(":visible");
 
                     if (isExpanded) {
-                        $(target).hide();
+                        // Collapse the current row and all its child rows
+                        collapseAllChildren($(target));
                         $(this).text("+");
                     } else {
+                        // Expand the current row
                         $(target).show();
                         $(this).text("-");
                     }
                 });
+
+                // Function to collapse all child rows hierarchically
+                function collapseAllChildren(parentRow) {
+                    parentRow.hide();
+
+                    // Find and hide all nested child rows
+                    parentRow.find(".toggle-symbol[data-target]").each(function () {
+                        var childTarget = $(this).data("target");
+                        var childRow = $(childTarget);
+
+                        // Recursively collapse child rows
+                        if (childRow.is(":visible")) {
+                            $(this).text("+"); // Update symbol for collapsed row
+                            collapseAllChildren(childRow);
+                        }
+                    });
+                }
 
                 // Highlight row on click
                 $(".table tbody tr").click(function () {
@@ -229,7 +248,7 @@
                     $("#context-menu").hide();
                 });
 
-              
+                // Handle delete action
                 $("#delete-item").click(function () {
                     if (selectedRowData) {
                         var deleteUrl;
@@ -254,7 +273,6 @@
                                 return;
                         }
 
-                       
                         Swal.fire({
                             title: 'Are you sure?',
                             text: "You won't be able to revert this!",
@@ -269,7 +287,7 @@
                                     if (result.success) {
                                         toastr.success(result.message);
                                         setTimeout(function () {
-                                            location.reload(); 
+                                            location.reload();
                                         }, 3000);
                                     } else {
                                         toastr.error(result.message || "Failed to delete the item.");
