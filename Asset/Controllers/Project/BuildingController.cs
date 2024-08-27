@@ -43,12 +43,12 @@ namespace Asset.Controllers.Project
             }
         }
 
-        [HttpGet]
+       
         public IActionResult Update(int id)
         {
             var building = _buildingManager.GetItemById(id);
             building.IsUpdated = true;
-            return View("BaseProject", building);
+            return View("Building", building);
         }
 
         [HttpPost]

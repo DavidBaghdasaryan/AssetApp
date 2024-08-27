@@ -26,10 +26,12 @@
                 <tr>
                     <th>Name</th>
                     <th>Code</th>
+                    <th>Construction  Date</th>
+                    <th>Address</th>
+                    <th>Description</th>
+                    <th>Room Number</th>
+                    <th>Floor Area (m²)</th>
                     <th>Count</th>
-                    <th>Image</th>
-                    <th>Introduction Date</th>
-                    <th>MDC</th>
                     <th>Task Unit Price</th>
                 </tr>
             </thead>
@@ -43,6 +45,8 @@
                             @project.Name
                         </td>
                         <td>@project.Code</td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -64,6 +68,8 @@
                             <td>@buildingGroup.Description</td>
                             <td></td>
                             <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                         @foreach (var building in buildingGroup.Buildings)
@@ -78,7 +84,9 @@
                                 <td>@building.ConstructionDate</td>
                                 <td>@building.Address</td>
                                 <td>@building.Description</td>
+                                <td></td>
                                 <td>@building.FloorArea</td>
+                                <td></td>
                                 <td></td>
                             </tr>
 
@@ -91,6 +99,8 @@
                                         @room.Name
                                     </td>
                                     <td>@room.Code</td>
+                                    <td></td>
+                                    <td></td>
                                     <td>@room.Description</td>
                                     <td>@room.RoomNumber</td>
                                     <td>@room.FloorArea</td>
@@ -106,11 +116,13 @@
                                             @element.Name
                                         </td>
                                         <td>@element.Code</td>
-                                        <td>@element.Count</td>
-                                        <td>@element.Unit</td>
                                         <td>@element.IntroductionDate.ToShortDateString()</td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>@element.Count</td>
+                                        <td>@element.Unit</td>
                                     </tr>
                                 }
                             }
