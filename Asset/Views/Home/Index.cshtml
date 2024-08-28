@@ -132,7 +132,6 @@
             </tbody>
         </table>
 
-        <!-- Context Menu -->
         <div class="context-menu" id="context-menu">
             <ul>
                 <li id="update-item">Update</li>
@@ -162,50 +161,43 @@
 
                 var selectedRowData = null;
 
-                // Expand/Collapse rows hierarchically
                 $(".toggle-symbol").click(function () {
                     var target = $(this).data("target");
                     var isExpanded = $(target).first().is(":visible");
 
                     if (isExpanded) {
-                        // Collapse the current row and all its child rows
                         collapseAllChildren($(target));
                         $(this).text("+");
                     } else {
-                        // Expand the current row
                         $(target).show();
                         $(this).text("-");
                     }
                 });
 
-                // Function to collapse all child rows hierarchically
                 function collapseAllChildren(parentRow) {
                     parentRow.hide();
 
-                    // Find and hide all nested child rows
                     parentRow.find(".toggle-symbol[data-target]").each(function () {
                         var childTarget = $(this).data("target");
                         var childRow = $(childTarget);
 
-                        // Recursively collapse child rows
                         if (childRow.is(":visible")) {
-                            $(this).text("+"); // Update symbol for collapsed row
+                            $(this).text("+"); 
                             collapseAllChildren(childRow);
                         }
                     });
                 }
 
-                // Highlight row on click
+             
                 $(".table tbody tr").click(function () {
                     $(".table tbody tr").removeClass("selected");
                     $(this).addClass("selected");
                 });
 
-                // Show the context menu on right-click
                 $(".table tbody tr").contextmenu(function (event) {
                     event.preventDefault();
 
-                    selectedRowData = $(this).data(); // Store the row data for later use
+                    selectedRowData = $(this).data();
 
                     $("#context-menu").css({
                         top: event.pageY + "px",
@@ -213,12 +205,10 @@
                     }).show();
                 });
 
-                // Hide the context menu when clicking elsewhere
                 $(document).click(function () {
                     $("#context-menu").hide();
                 });
 
-                // Handle update action
                 $("#update-item").click(function () {
                     if (selectedRowData) {
                         var updateUrl;
@@ -248,7 +238,6 @@
                     $("#context-menu").hide();
                 });
 
-                // Handle delete action
                 $("#delete-item").click(function () {
                     if (selectedRowData) {
                         var deleteUrl;

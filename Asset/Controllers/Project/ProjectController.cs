@@ -53,7 +53,6 @@ namespace Asset.Controllers.Project
         public IActionResult Update(BDProject bDProject)
         {
             _baseProjectManager.Update(bDProject);
-            var list = _baseProjectManager.GetAll();
             return View("/Views/Home/Index.cshtml", _baseProjectManager.GetAll());
         }
 
