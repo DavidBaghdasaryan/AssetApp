@@ -36,5 +36,9 @@ namespace BusinessLogic.Manager.Implementation
         {
             _unitOfWork.Room.Update(room);
         }
+        public List<BDProject> GetAll()
+        {
+            return _unitOfWork.GetList().ToList();
+        }
     }
 }

@@ -41,5 +41,9 @@ namespace BusinessLogic.Manager.Implementation
             _unitOfWork.BuildingGroup.Update(buildingGroup);
             _unitOfWork.Save();
         }
+        public List<BDProject> GetAll()
+        {
+            return _unitOfWork.GetList().ToList();
+        }
     }
 }

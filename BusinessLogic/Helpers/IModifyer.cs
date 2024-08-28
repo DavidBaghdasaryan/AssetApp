@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Model.Implementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace BusinessLogic.Helpers
         public void Update(T item);
         public void Delete(T item);
         public T GetItemById(int  id);
+        List<BDProject> GetAll();
     }
 }

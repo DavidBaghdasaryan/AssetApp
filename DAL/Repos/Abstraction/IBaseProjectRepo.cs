@@ -9,6 +9,6 @@ namespace DAL.Repos.Abstraction
 {
     public interface IBaseProjectRepo : IBaseRepo<BDProject>
     {
-        List<BDProject> GetList();
+        
     }
 }

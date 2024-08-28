@@ -36,5 +36,9 @@ namespace BusinessLogic.Manager.Implementation
         {
             _unitOfWork.Element.Update(element);
         }
+        public List<BDProject> GetAll()
+        {
+            return _unitOfWork.GetList().ToList();
+        }
     }
 }

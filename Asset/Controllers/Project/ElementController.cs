@@ -57,7 +57,7 @@ namespace Asset.Controllers.Project
         public IActionResult Update(Element element)
         {
             _elementManager.Update(element);
-            return View("Element", element);
+            return View("/Views/Home/Index.cshtml", _elementManager.GetAll());
         }
     }
 }

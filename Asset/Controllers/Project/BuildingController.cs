@@ -55,7 +55,7 @@ namespace Asset.Controllers.Project
         public IActionResult Update(Building building)
         {
             _buildingManager.Update(building);
-            return View("Building", building);
+            return View("/Views/Home/Index.cshtml", _buildingManager.GetAll());
         }
     }
 }

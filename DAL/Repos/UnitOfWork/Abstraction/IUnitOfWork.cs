@@ -1,4 +1,5 @@
-﻿using DAL.Repos.Abstraction;
+﻿using DAL.Model.Implementation;
+using DAL.Repos.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace DAL.Repos.UnitOfWork.Abstraction
        IBuildingRepo  Building { get;  }
        IElementRepo Element{ get;  }
        IRoomRepo Room { get;  }
-
+        List<BDProject> GetList();
         void Save();
     }
 }

@@ -1,8 +1,10 @@
 ﻿using DAL.DBContex;
 using DAL.Model;
+using DAL.Model.Implementation;
 using DAL.Repos.Abstraction;
 using DAL.Repos.Implementation;
 using DAL.Repos.UnitOfWork.Abstraction;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +31,17 @@ namespace DAL.Repos.UnitOfWork.Implementation
             Element = new ElementRepo(_db);
 
         }
+        public List<BDProject> GetList()
+        {
+            return _db.Projects
+                         .Include(p => p.BuildingGroups)
+                         .ThenInclude(x => x.Buildings)
+                         .ThenInclude(x => x.Rooms)
+                         .ThenInclude(x => x.Elements)
+                         .ToList();
+        }
 
-    
+
 
 
         public void Save()

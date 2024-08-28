@@ -151,7 +151,7 @@
                     "onclick": null,
                     "showDuration": "300",
                     "hideDuration": "1000",
-                    "timeOut": "5000",
+                    "timeOut": "1000",
                     "extendedTimeOut": "1000",
                     "showEasing": "swing",
                     "hideEasing": "linear",
@@ -277,7 +277,7 @@
                                         toastr.success(result.message);
                                         setTimeout(function () {
                                             location.reload();
-                                        }, 3000);
+                                        }, 1000);
                                     } else {
                                         toastr.error(result.message || "Failed to delete the item.");
                                     }

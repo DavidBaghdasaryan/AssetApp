@@ -17,14 +17,6 @@ namespace DAL.Repos.Implementation
         {
             _db = db;
         }
-        public List<BDProject> GetList()
-        {
-            return _db.Projects
-                         .Include(p => p.BuildingGroups)
-                         .ThenInclude(x => x.Buildings)
-                         .ThenInclude(x=>x.Rooms)
-                         .ThenInclude(x=>x.Elements)
-                         .ToList();
-        }
+   
     }
 }

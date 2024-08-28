@@ -54,7 +54,7 @@ namespace Asset.Controllers.Project
         public IActionResult Update(BuildingGroup buildingGroup)
         {
             _buildingGroupManager.Update(buildingGroup);
-            return View("buildingGroup", buildingGroup);
+            return View("/Views/Home/Index.cshtml", _buildingGroupManager.GetAll());
         }
     }
 }
